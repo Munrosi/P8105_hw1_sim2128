@@ -13,7 +13,7 @@ library(tidyverse)
 
 #Problem 1
 
-```{r sharks}
+```{r}
 set.seed(10)
 hw1_df = tibble(
   sharks = rnorm(8),
@@ -56,4 +56,30 @@ as.numeric(as.factor(pull(hw1_df, positive)))*(pull(hw1_df, sharks))
 ```
 
 #Problem 2 
+
+```{r}
+set.seed(500)
+part2_df = tibble(
+  x = rnorm(500),
+  y = rnorm(500),
+  logicv = x + y > 1,
+  numberv = as.numeric(logicv),
+  factorv = as.factor(numberv)
+)
+
+```
+The dataset `part2_df1` has `r nrow(part2_df)` rows and `r ncol(part2_df)` columns. The mean of x is `r mean(pull(part2_df, x))`, the median is `r median(pull(part2_df, x))`, and the standard deviation is `r sd(pull(part2_df, x))`. The proportion of `logicv` for which x + y > 1 is `r mean(pull(part2_df, logicv))`
+
+```{r}
+#Scatter plot with colors corresponding to the logical vector
+ggplot(part2_df, aes(x = x, y = y, color=logicv)) + geom_point()
+ggsave("scatter_plot1.pdf")
+#Scatter plot with colors corresponding to the numeric vector
+ggplot(part2_df, aes(x = x, y = y, color=numberv)) + geom_point()
+#Scatter plot with colors corresponding to the factor vector
+ggplot(part2_df, aes(x = x, y = y, color=factorv)) + geom_point()
+
+#The distribution appeared the same for all three plots. The colors appeared the same only for the plots corresponding to the logical and factor vector. For the plot with colors corresponding to the numeric vector, there was a scale of color rather than 2 single options of red or blue. 
+
+```
 
