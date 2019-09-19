@@ -1,0 +1,28 @@
+---
+title: "P8105_hw1_sim2128"
+author: "Sarah Munro"
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+library(tidyverse)
+
+```{r sharks}
+set.seed(10)
+hw1_df = tibble(
+  sharks = rnorm(8),
+  positive = sharks > 0, 
+  species = c("White", "Tiger", "Nurse", "Bull", "Whale", "Lemon", "Hammerhead",   "Mako"),
+   Aggression = factor(c("High", "High", "Low", "High", "Low", "High", "Medium", "Medium"))
+)
+
+```
+
+
+dfdg
+
+
