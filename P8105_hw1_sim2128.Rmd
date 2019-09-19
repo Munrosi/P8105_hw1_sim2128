@@ -11,18 +11,49 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 
+#Problem 1
+
 ```{r sharks}
 set.seed(10)
 hw1_df = tibble(
   sharks = rnorm(8),
   positive = sharks > 0, 
   species = c("White", "Tiger", "Nurse", "Bull", "Whale", "Lemon", "Hammerhead",   "Mako"),
-   Aggression = factor(c("High", "High", "Low", "High", "Low", "High", "Medium", "Medium"))
+  aggression = factor(c("High", "High", "Low", "High", "Low", "High", "Medium", "Medium"))
 )
+
+mean(pull(hw1_df, sharks))
+#The mean was taken properly
+mean(pull(hw1_df, positive))
+#The mean was taken properly
+mean(pull(hw1_df, species))
+#The mean was unable to be taken
+mean(pull(hw1_df, aggression))
+#The mean was unable to be taken
+```
+
+```{r eval = FALSE}
+#Convert the logical vector to a numeric vector
+as.numeric(pull(hw1_df, positive))
+#Convert the character vector to a numeric vector
+as.numeric(pull(hw1_df, species))
+#Convert the factor vector to a numeric vector
+as.numeric(pull(hw1_df, aggression))
+
+#You can convert the logical and factor vectors to numeric, but you are unable to covert the character vector to numeric. This would explain why the mean of the character variable cannot be taken, the characters do not correspond to any numeric values. 
+```
+
+```{r}
+#Convert the logical vector to a numeric vector, then multiply the random sample by the result
+as.numeric(pull(hw1_df, positive))*(pull(hw1_df, sharks))
+#Convert the logical vector to a factor vector, then multiply the random sample by the result
+as.factor(pull(hw1_df, positive))*(pull(hw1_df, sharks))
+#Convert the logical vector to a factor factor, then convert the result to numeric, then multiply the random sample by the result
+as.numeric(as.factor(pull(hw1_df, positive)))*(pull(hw1_df, sharks))
+
+#The result was not meaningful for the factors, they were assigned values of NA
 
 ```
 
-
-dfdg
-
+#Problem 2 
 
